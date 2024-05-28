@@ -1,11 +1,11 @@
-# My-Training-Projects-Aws
-
-
- 
 Configuring a static website on Amazon S3
 
 
-Topics
+ 
+
+
+
+
 
 
 Step 1: Create a bucket
