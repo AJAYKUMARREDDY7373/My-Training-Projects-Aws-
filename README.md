@@ -96,6 +96,8 @@ Choose Permissions.
 Under Bucket Policy, >> choose Edit.
 
 To grant public read access for your website, copy the following bucket policy, and paste it in the Bucket policy editor.
+
+
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -112,6 +114,8 @@ To grant public read access for your website, copy the following bucket policy, 
     }
   ]
 }
+
+
 
 
 Update the Resource to your bucket name.
