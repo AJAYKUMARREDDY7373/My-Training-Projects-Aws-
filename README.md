@@ -99,16 +99,26 @@ To grant public read access for your website, copy the following bucket policy, 
 
 
 {
-  "Version": "2012-10-17",
+  
+  "Version": "2012-10-17",
+  
   "Statement": [
     {
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
+      
+      "Sid": "PublicReadGetObject",
+      
+      "Effect": "Allow",
+      
       "Principal": "*",
-      "Action": [
+      
+     
+      "Action": [
+      
         "s3:GetObject"
       ],
+      
       "Resource": [
+      
         "arn:aws:s3:::Kamino-123/*"
       ]
     }
@@ -199,7 +209,7 @@ At the bottom of the page, under Static website hosting, choose your Bucket webs
 
 Your index document opens in a separate browser window.
 
-You now have a website hosted on Amazon S3. This website is available at the Amazon S3 website endpoint. However, you might have a domain, as www.aws/s3/.Ap-south-1/Kamimo-123/.amazon.com 
+You now have a website hosted on Amazon S3. This website is available at the Amazon S3 website endpoint. However, you might have a domain, as s3://Ap-south-1/Kamimo-123
 
 Step 8: Clean up
 
