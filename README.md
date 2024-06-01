@@ -189,7 +189,7 @@ S3 static website .......
 
 Step 9: Clean up
 
-If you created your static website only as a learning exercise, delete the AWS resources that you allocated so that you no longer accrue charges. After you delete your AWS resources, your website is no longer available. For more information, see Deleting a bucket.
+ created your static website only as a learning exercise, delete the AWS resources that you allocated so that you no longer accrue charges. After you delete your AWS resources, your website is no longer available. 
 
 Source : @ Aws/Restart 
 
