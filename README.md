@@ -11,7 +11,7 @@ Create a batch file that can be used to update the static website when you chang
 ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/a874a474-5393-443b-ab49-3d5a842cf009)
 
 Objectives
-After completing this lab, you should be able to:
+
 
 Run AWS CLI commands that use IAM and Amazon S3 services.
 
