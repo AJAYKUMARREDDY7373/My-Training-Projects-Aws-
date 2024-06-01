@@ -86,6 +86,9 @@ Choose Sign In
 
 On the AWS Management Console, in the Search box, enter S3 and choose S3. This option takes you to the Amazon S3 console page.
 
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/223e3be3-a004-442b-a41f-b77a7ba77536)
+
+
 Note: The bucket that you created might not be visible. Refresh the Amazon S3 console page to see if it appears. The awsS3user user does not have Amazon S3 access to the bucket that you created, so you might see an error for Access to this bucket.  
 
 In the terminal window, to find the AWS managed policy that grants full access to Amazon S3, run the following command:
