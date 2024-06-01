@@ -1,3 +1,4 @@
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/8f4c5f84-f9e0-44ce-a698-d4b3338f24bb)
 Configuring a static website on Amazon S3
 
 
