@@ -1,5 +1,6 @@
-![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/8f4c5f84-f9e0-44ce-a698-d4b3338f24bb)
+
 Configuring a static website on Amazon S3
+
 
 
  
@@ -24,6 +25,9 @@ Step 6: Configure an error document
 Step 7: Test your website endpoint
 
 Step 8: Clean up
+
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/7b555ec0-1c25-4d9d-bc7b-31d8ba295a9c)
+
 
 
 To create a bucket
