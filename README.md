@@ -1,223 +1,236 @@
+Creating a Website on S3
 
-Configuring a static website on Amazon S3
+Create an Amazon Simple Storage Service (Amazon S3) bucket.
 
+Create a new AWS Identity and Access Management (IAM) user that has full access to the Amazon S3 service.
 
+Upload files to Amazon S3 to host a simple website for the Café & Bakery.
 
- 
+Create a batch file that can be used to update the static website when you change any of the website files locally.
 
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/a874a474-5393-443b-ab49-3d5a842cf009)
 
+Objectives
+After completing this lab, you should be able to:
 
+Run AWS CLI commands that use IAM and Amazon S3 services.
 
+Deploy a static website to an S3 bucket.
 
+Create a script that uses the AWS CLI to copy files in a local directory to Amazon S3.
 
-Step 1: Create a bucket
+Step 1: Connect to an Amazon Linux EC2 instance using SSM
 
-Step 2: Enable static website hosting
+Run the following commands to change the user and home directory:
 
-Step 3: Edit Block Public Access settings
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/33fb96c3-9d3c-4da0-ac92-5b92420e908f)
 
-Step 4: Add a bucket policy that makes your bucket content publicly available
+Step 2: Configure the AWS CLI
+Unlike some other Linux distributions that are available through Amazon Web Services (AWS), Amazon Linux instances already have the AWS CLI pre-installed on them.
 
-Step 5: Configure an index document
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/b023b845-e901-4a87-9f20-9c43c6a1bf53)
 
-Step 6: Configure an error document
+AWS Access Key ID: Copy and paste the value for AccessKey from my notes or where you you saved
 
-Step 7: Test your website endpoint
+AWS Secret Access Key: Copy and paste the value for SecretKey from my notes or where you you saved
 
-Step 8: Clean up
+Default region name: Enter ap-south-1
 
-![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/7b555ec0-1c25-4d9d-bc7b-31d8ba295a9c)
+Default output format: Enter json
 
+Step 3: Create an S3 bucket using the AWS CLI
 
+When you create a new S3 bucket, the bucket must have a unique name, such as the combination of your first initial, last name, and three random numbers. For example, if a user's name is Terry Whitlock, a bucket name could be twhitlock256
 
-To create a bucket
-Sign in to the AWS Management Console and open the Amazon S3 console 
+To create a bucket in Amazon S3, you use the aws s3api create-bucket command. When you use this command to create an S3 bucket, you also include the following:
 
-Choose Create bucket.
+Specify --region  ap-south-1
 
-Enter the Bucket name - "kamino-123".
+Add --create-bucket-configuration LocationConstraint=ap-south-1 to the end of the command.
 
-Choose the Region where you want to create the bucket - "Ap-south-1"
+The following  command is  to create a new S3 bucket
 
-Choose a Region that is geographically close to you to minimize latency and costs, or to address regulatory requirements. The Region that you choose determines your Amazon S3 website endpoint.
+aws s3api create-bucket --bucket Kaminopg123 --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2 ansd output in json (sucessful bucket creation)
 
-To accept the default settings and create the bucket, choose Create.
+Step 4: Create a new IAM user that has full access to Amazon S3
 
-Step 2: Enable static website hosting
+Using the AWS CLI, create a new IAM user with the command aws iam create-user and username awsS3user
 
-After you create a bucket, you can enable static website hosting for your bucket. You can create a new bucket or use an existing bucket.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/36c17ae8-e561-4779-8e71-495ddba0067c)
 
-To enable static website hosting
-Sign in to the AWS Management Console and open the Amazon S3 console .
-In the Buckets list, choose the name of the bucket that you want to enable static website hosting for.
+Create a login profile for the new user by using the following command:
 
->> Choose Properties.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/cc9223e3-f41a-4c82-baae-9d4842f50db5)
 
->> Under Static website hosting, choose Edit.
+Copy the 12 digit Account ID number.
 
->> Choose Use this bucket to host a website.
+In the current drop down menu, choose Sign Out.
 
->> Under Static website hosting, choose Enable.
+Log in to the AWS Management Console as the new awsS3user user:
 
-In Index document, enter the file name of the index document, typically index.html.
+In the browser tab where you just signed out of the AWS Management Console, choose Log back in or Sign in to the Console. 
 
-The index document name is case sensitive and must exactly match the file name of the HTML index document that you plan to upload to your S3 bucket. When you configure a bucket for website hosting, you must specify an index document. Amazon S3 returns this index document when requests are made to the root domain or any of the subfolders. For more information, see Configuring an index document.
+In the sign-in screen, choose the radio button IAM user.
 
-To provide your own custom error document for 4XX class errors, in Error document, enter the custom error document file name.
+In the text field, paste or enter the account ID with no dashes.
 
-The error document name is case sensitive and must exactly match the file name of the HTML error document that you plan to upload to your S3 bucket. If you don't specify a custom error document and an error occurs, Amazon S3 returns a default HTML error document. For more information, see Configuring a custom error document.
+Choose Next.
 
-Choose Save changes.
+A new login screen with Sign in as IAM user field will show. The account ID will be filled in from the previous screen.
 
-Amazon S3 enables static website hosting for your bucket. At the bottom of the page, under Static website hosting, you see the website endpoint for your bucket.
+For IAM user name, enter awsS3user
 
-Under Static website hosting, note the Endpoint.
+For Password, enter Training123!
 
-The Endpoint is the Amazon S3 website endpoint for your bucket. After you finish configuring your bucket as a static website, you can use this endpoint to test your website.
+Choose Sign In
 
-Step 3: Edit Block Public Access settings
+On the AWS Management Console, in the Search box, enter S3 and choose S3. This option takes you to the Amazon S3 console page.
 
-By default, Amazon S3 blocks public access to your account and buckets. If you want to use a bucket to host a static website, you can use these steps to edit your block public access settings.
+Note: The bucket that you created might not be visible. Refresh the Amazon S3 console page to see if it appears. The awsS3user user does not have Amazon S3 access to the bucket that you created, so you might see an error for Access to this bucket.  
 
-Choose the name of the bucket that you have configured as a static website.
+In the terminal window, to find the AWS managed policy that grants full access to Amazon S3, run the following command:
 
-Choose  >> Permissions.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/e8f7c69a-0d2e-4b97-a9fb-9c5649fb07de)
 
-Under Block public access (bucket settings), >> choose Edit.
+The result displays policies that have a PolicyName attribute containing the term S3. Locate the policy that grants full access to Amazon S3. You use this policy in the next step.
 
-Clear Block all public access, and  >> choose Save changes.
+To grant the awsS3user user full access to the S3 bucket, replace <policyYouFound> in following command with the appropriate PolicyName from the results, and run the adjusted command:
 
-Amazon S3 turns off Block Public Access settings for your bucket. To create a public, static website, you might also have to edit the Block Public Access settings for your account before adding a bucket policy. If account settings for Block Public Access are currently turned on, you see a note under Block public access (bucket settings).
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/f4290845-8d93-4ee6-9b99-dff26f27ddcd)
 
+eturn to the AWS Management Console, and refresh the browser tab.
 
-Step 4: Add a bucket policy that makes your bucket content publicly available
+Step 5: Adjust S3 bucket permissions
+On the AWS Management Console, on the Amazon S3 console, choose your bucket name.
 
-After you edit S3 Block Public Access settings, you can add a bucket policy to grant public read access to your bucket. When you grant public read access, anyone on the internet can access your bucket.
+Go to permissions, under Block public access (bucket settings), choose Edit
 
-Under Buckets, choose the name of your bucket.
+DeSelect/UnSelect Block all public access
 
-Choose Permissions.
+Choose Save changes (confirm on the prompt)
 
-Under Bucket Policy, >> choose Edit.
+On to permissions tab, under Object Ownership, choose Edit
 
-To grant public read access for your website, copy the following bucket policy, and paste it in the Bucket policy editor.
+Choose ACLs enabled
 
+Choose I acknowledge that ACLs will be restored.
 
-{
-  
-  "Version": "2012-10-17",
-  
-  "Statement": [
-    {
-      
-      "Sid": "PublicReadGetObject",
-      
-      "Effect": "Allow",
-      
-      "Principal": "*",
-      
-     
-      "Action": [
-      
-        "s3:GetObject"
-      ],
-      
-      "Resource": [
-      
-        "arn:aws:s3:::Kamino-123/*"
-      ]
-    }
-  ]
-}
+Choose Save changes
 
+Step 6: Extract the files that you need for this lab
+A file containing the static-website contents for the Amazon S3 bucket will need to be extracted in the following step.
 
+Back in the SSH terminal, extract the files that you need for this lab by running the following commands:
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/7e2659fa-dbfc-4719-8ef0-697a222b0c99)
 
+To confirm that the files were extracted correctly, run the ls command.
 
-Update the Resource to your bucket name.
+Step 7: Upload files to Amazon S3 by using the AWS CLI
+Once the files are extracted, you upload the contents of the file to Amazon S3. These files include what you explored when you ran the ls command.
 
-In the preceding example bucket policy, Bucket-Name is a placeholder for the bucket name. To use this bucket policy with your own bucket, you must update this name to match your bucket name.
+So that the bucket can function as a website, replace <my-bucket> in the following command with your bucket name, and run the adjusted command. 
 
-Choose Save changes.
 
-A message appears indicating that the bucket policy has been successfully added.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/357d3c17-3073-4d92-a152-74327d1e5ce9)
 
-If you see an error that says Policy has invalid resource, confirm that the bucket name in the bucket policy matches your bucket name. For information about adding a bucket policy, see How do I add an S3 bucket policy?
+This process helps ensure that the index.html file will be known as the index document.
 
-If you get an error message and cannot save the bucket policy, check your account and bucket Block Public Access settings to confirm that you allow public access to the bucket.
+To upload the files to the bucket, replace <my-bucket> in the following command with your bucket name, and run the adjusted command:
 
-Step 5: Configure an index document
 
-When you enable static website hosting for your bucket, you enter the name of the index document (for example, index.html). After you enable static website hosting for the bucket, you upload an HTML file with this index document name to your bucket.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/fc2d5e3e-9fe2-4ec7-bcdf-2b829b92c160)
 
-Create an index.html file.  
-I host the same html file that was hosted in aws official tutorial page .
+To verify that the files were uploaded, replace <my-bucket> in the following command with your bucket name, and run the adjusted command:
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head>
-  <title>My Website Home Page</title>
-</head>
-<body>
- <h1>Welcome to my website</h1>
- <p>Now hosted on Amazon S3!</p>
-</body>
-</html>
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/8de789d6-639e-429d-a5f5-bc37de7fac80)
 
+On the AWS Management Console, on the Amazon S3 console, choose your bucket name.
 
-Save the index file locally.
+Choose the Properties tab. At the bottom of the this tab, note that Static website hosting is Enabled. Running the aws s3 website AWS CLI command turns on the static website hosting for an Amazon S3 bucket. This option is usually turned off by default.
 
-The index document file name must exactly match the index document name that you enter in the Static website hosting dialog box. The index document name is case sensitive. For example, if you enter index.html for the Index document name in the Static website hosting dialog box, your index document file name must also be index.html and not Index.html
+To open the URL on a new page, choose the Bucket website endpoint URL that displays.
 
-Sign in to the AWS Management Console and open the Amazon S3 
-In the Buckets list, choose the name of the bucket that you want to use to host a static website.
+Task 8: Create a batch file to make updating the website repeatable
+To create a repeatable deployment, you create a batch file by using the VI editor. 
 
-Enable static website hosting for your bucket, and enter the exact name of your index document S3Host. 
-After enabling static website hosting, proceed to step 6.
+Locate the line where you ran the aws s3 cp command. You will put this line in your new batch file.
 
-To upload the index document to your bucket, do one of the following:
+To change directories and create an empty file, run the following command in the SSH terminal session:
 
-Drag and drop the index file into the console bucket listing.
 
-Choose Upload, and follow the prompts to choose and upload the index file.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/efd2d94f-4629-4feb-9d53-5edd806dc045)
 
-Step 6: Configure an error document
+To open the empty file in the VI editor, run the following command.
 
-When you enable static website hosting for your bucket, you enter the name of the error document (for example, 404.html). After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket.
-To configure an error document
-Create an error document, for example 404.html.
 
-Save the error document file locally.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/b0f9c44d-a7b6-4dbd-8848-0223cd7251bf)
 
-The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting. For example, if you enter 404.html for the Error document name in the Static website hosting dialog box, your error document file name must also be 404.html.
+To enter edit mode in the VI editor, press i
 
-In the Buckets list, choose the name of the bucket that you want to use to host a static website.
+Next, you add the standard first line of a bash file and then add the s3 cp line from your history. To do so, replace <my-bucket> in the following command with your bucket name, and copy and paste the adjusted command into your file:
 
-Enable static website hosting for your bucket, and enter the exact name of your error document (for example, 404.html). For more information, see Enabling website hosting and Configuring a custom error document.
 
-After enabling static website hosting, proceed to step 6.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/8f6bcbdc-93fa-48e8-a04e-bbba63b573f4)
 
-To upload the error document to your bucket, do one of the following:
+To write the changes and quit the file, press Esc, enter :wq and then press Enter.
 
-Drag and drop the error document file into the console bucket listing.
+To make the file an executable batch file, run the following command:
 
-Choose Upload, and follow the prompts to choose and upload the index file.
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/7858bef9-0ebc-4e56-bb14-374589f2f277)
 
+S3 static website .......
 
-Step 7: Test your website endpoint
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/e41b8f7d-3b65-4717-be2a-983ce69a3bed)
 
-After you configure static website hosting for your bucket, you can test your website endpoint.
-Under Buckets, choose the name of your bucket.
 
-Choose Properties.
-
-At the bottom of the page, under Static website hosting, choose your Bucket website endpoint.
-
-Your index document opens in a separate browser window.
-
-You now have a website hosted on Amazon S3. This website is available at the Amazon S3 website endpoint. However, you might have a domain, as s3://Ap-south-1/Kamimo-123
-
-Step 8: Clean up
+Step 9: Clean up
 
 If you created your static website only as a learning exercise, delete the AWS resources that you allocated so that you no longer accrue charges. After you delete your AWS resources, your website is no longer available. For more information, see Deleting a bucket.
 
-Source : @ Aws
+Source : @ Aws/Restart 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
