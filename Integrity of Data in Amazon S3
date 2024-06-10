@@ -1,0 +1,10 @@
+Check the Integrity of Data in Amazon S3 with Additional Checksums 
+
+Steps:
+•	Create a S3 Bucket
+•	Upload a file and specify the checksum algorithm
+•	Verify checksum
+•	Cleanup
+
+Step 1: Create a S3 bucket:
+•	Choose Buckets from the Amazon S3 menu on the left and then choose the Create bucket button. 
