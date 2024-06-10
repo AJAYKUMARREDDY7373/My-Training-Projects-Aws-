@@ -1,4 +1,4 @@
-Check the Integrity of Data in Amazon S3 with Additional Checksums (Master Level Instructions)
+Check the Integrity of Data in Amazon S3 with Additional Checksums 
 
 Steps:
 •	Create a S3 Bucket
