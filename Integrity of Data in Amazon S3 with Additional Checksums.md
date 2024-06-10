@@ -69,6 +69,8 @@ shasum -a 256 image.jpg | cut -f1 -d\ | xxd -r -p | base64
 ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/e2d17d40-4cc6-46b4-8f88-abb72275cfcb)
 
 •	When comparing this value, it should match the value in the Amazon S3 console.
+
+
 For windows ------->
 
 ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/faf0f8ea-0dc2-4fbb-bdc0-f9c8bead74a4)
