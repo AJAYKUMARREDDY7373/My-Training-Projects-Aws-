@@ -19,7 +19,7 @@ Now that your bucket is created and configured, you are ready to upload a file a
 Upload an object
 •	If you have logged out of your AWS Management Console session, log back in. Navigate to the S3 console and select the Buckets menu option. From the list of available buckets, select the bucket name of the bucket you just created.
 
- ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/a8752aa2-18c4-46b2-b285-3793b4f39faa)
+
 •	Next, select the Objects tab. Then, from within the Objects section, choose the Upload button.
 
 ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/10f3b90f-2fbc-42ae-9c4c-2f2f06f50512)
@@ -28,6 +28,9 @@ Add files
 •	Choose the Add files button and then select the file you would like to upload from your file browser.
 
 ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/adedc20e-ba84-4293-ad44-75028e12e281)
+
+
+ ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/a8752aa2-18c4-46b2-b285-3793b4f39faa)
 Expand properties
 
 •	Navigate down the page to find the Properties section. Then, select Properties and expand the section.
