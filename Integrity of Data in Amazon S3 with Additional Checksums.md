@@ -42,8 +42,6 @@ Select additional checksums
 
 If your object is less than 16 MB and you have already calculated the SHA-256 checksum (base64 encoded), you can provide it in the Precalculated value input box. To use this functionality for objects larger than 16 MB, you can use the CLI or SDK. When Amazon S3 receives the object, it calculates the checksum by using the algorithm specified. If the checksum values do not match, Amazon S3 generates an error and rejects the upload, as shown in the screenshot.
 
-![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/0ff9143e-52fd-4dde-95e9-1f431e9c0734)
-
  Upload
 •	Navigate down the page and choose the Upload button.
 
