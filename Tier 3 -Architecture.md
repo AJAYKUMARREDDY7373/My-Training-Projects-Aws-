@@ -1,6 +1,7 @@
 The three-tier architecture is the most popular implementation of a multi-tier architecture and consists of a single presentation tier, logic tier, and data tier. The following illustration shows an example of a simple, generic three-tier application.
 
-![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/4c6fd091-f577-4b7f-9c0d-e1de80f5a8bb)
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/01201e3a-1fa1-4668-b1b7-3f4a52c1b640)
+
 
 Step 1: Create a VPC and Subnets as well as routing and security groups
 ● Go to “Your VPCs” from the VPC service on the AWS management console and click on
