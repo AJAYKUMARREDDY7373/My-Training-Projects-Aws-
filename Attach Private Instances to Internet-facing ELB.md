@@ -197,9 +197,20 @@ Select Classic Load Balancer
 ![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/f7c33b12-331a-4ad2-bfc3-ed0d279938cd)
 
 Select the VPC and than Associate the public subnets with your load
+
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/e237f7e5-15f1-4865-a8d4-e0ec3742975f)
+
 Register the backend instances (created in private subnet ) with your load balancer
 Select Security group ( created in above step )
+
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/b29a708e-803d-447f-bdde-565dd01dd0ac)
+
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/877b0034-9e36-48a5-874b-58dd4c29a2fc)
+
+![image](https://github.com/AJAYKUMARREDDY7373/My-Training-Projects-Aws-/assets/154115376/69d08f80-2ebb-4046-b11a-3e85eda56aab)
+
 Create LoadBalancer
+
 Test with DNS Name
 
 
