@@ -1,6 +1,6 @@
 Creating a Website on S3
 
-Creating a Website on S3
+
 
 Create an Amazon Simple Storage Service (Amazon S3) bucket.
 
